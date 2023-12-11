@@ -5,5 +5,17 @@ services:
 before_install:
   - docker build -t howard_docker_playground -f Dockerfile.dev .
 
-script:
+script: # this is the command to tell Travis how to trigger the test
   - docker run -e CI=true howard_docker_playground npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-playground"
+  env: "Docker-playground-env"
+  bucket-name: "elasticbeanstalk-us-east-1-661256640887" # ElasticBeanstalk will store everything to this bucket from this region
+  bucket-path: "docker-playground" # Before first deployment, nothing will be found in the bucket
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"
