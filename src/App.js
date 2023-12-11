@@ -17,6 +17,9 @@ function App() {
         >
           Learn React
         </a>
+        <p>
+          Howard's React Playground
+        </p>
       </header>
     </div>
   );
