@@ -1,4 +1,4 @@
-version: 1.0.0
+version: "3"
 services:
   web:
     build:
@@ -10,7 +10,7 @@ services:
       - /app/node_modules
       - .:/app
   tests:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile.dev
     volumes:
